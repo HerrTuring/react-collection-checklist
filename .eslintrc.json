@@ -1,0 +1,82 @@
+{
+    "root": true,
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "airbnb"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": [
+            "./tsconfig.json"
+        ]
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "prettier"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "src/**/*.ts[x]",
+                "scripts/*.js"
+            ]
+        }
+    ],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
+        }
+    },
+    "rules": {
+        "@typescript-eslint/strict-boolean-expressions": [
+            1,
+            {
+                "allowString": false,
+                "allowNumber": false
+            }
+        ],
+        "curly": "off",
+        "no-param-reassign": "off",
+        "no-use-before-define": "off",
+        "no-static-element-interactions": "off",
+        "import/prefer-default-export": "off",
+        "import/no-dynamic-require": "off",
+        "import/extensions": "off",
+        "no-constant-condition": [
+            "error",
+            {
+                "checkLoops": false
+            }
+        ],
+        "no-await-in-loop": "off",
+        "no-underscore-dangle": "off",
+        "no-console": "off",
+        "no-plusplus": "off",
+        "no-alert": "off",
+        "import/no-cycle": "off",
+        "no-continue": "off",
+        "no-loop-func": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "no-restricted-globals": "off",
+        "nonblock-statement-body-position": [
+            "error",
+            "below"
+        ],
+        "class-methods-use-this": "off",
+        "no-empty-function": "off",
+        "no-restricted-syntax": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error"
+        ],
+        "@typescript-eslint/no-explicit-any": "off",
+        "import/no-extraneous-dependencies": "off"
+    }
+}
