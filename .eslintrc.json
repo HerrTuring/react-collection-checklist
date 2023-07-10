@@ -77,6 +77,20 @@
             "error"
         ],
         "@typescript-eslint/no-explicit-any": "off",
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "react/jsx-no-useless-fragment": "off",
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    "tsx"
+                ]
+            }
+        ]
+    },
+    "env": {
+        "browser": true
     }
 }
