@@ -1,17 +1,17 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import external from 'rollup-plugin-peer-deps-external';
 import dts from 'rollup-plugin-dts';
 import postcss from 'rollup-plugin-postcss';
 
 import packageJson from './package.json' assert { type: 'json' };
 
 export default [{
-  input: './src/index.ts',
+  input: './src/index.tsx',
   output: [{
     file: packageJson.main,
     format: 'cjs',
-
   },
   {
     file: packageJson.module,
@@ -19,6 +19,7 @@ export default [{
   },
   ],
   plugins: [
+    external(),
     resolve(),
     commonjs(),
     typescript({ tsconfig: './tsconfig.json' }),
@@ -29,9 +30,9 @@ export default [{
 },
 {
   input: './.build/esm/types/index.d.ts',
-  output: [{ file: './.build/index.d.ts', format: 'esm' }],
+  output: [{ file: './.build/index.d.tsx', format: 'esm' }],
   plugins: [dts()],
-  external: [/\.(css|less|scss)$/],
+  external: [/\.(css|less|scss)$/, 'react', 'react-dom'],
 },
 
 ];

@@ -1,55 +1,47 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import type { itemData, standardsType } from '../../types';
+import type { itemData } from '../../types';
 
 import styles from './style.module.css';
 
 type itemPropType = {
   data: itemData;
-  standards?: standardsType;
   className?: string;
   imgClassName?: string;
-  checkBoxClassName?: string
+  checkBoxClassName?: string;
+  onClick: (arg0: boolean) => any;
+  checked?: boolean;
 };
 
 const defaultProps = {
-  standards: {
-    clickMode: 'check',
-    baseImgUrl: '',
-  },
   className: '',
   imgClassName: '',
   checkBoxClassName: '',
+  checked: false,
 };
 
 function Item(props: itemPropType) {
   const {
-    data, standards, className, imgClassName, checkBoxClassName,
+    data, className, imgClassName, checkBoxClassName, checked, onClick,
   } = props;
 
-  const { baseImgUrl, clickMode } = standards as standardsType;
+  const { name, img: imgSrc } = data;
 
-  const [checked, setChecked] = useState<boolean>(true);
-
-  const { name, path, img: imgSrc } = data;
-
-  const onClick = () => {
-    window.location.href = path;
+  const click = () => {
+    onClick(!(checked as boolean));
   };
 
   return (
     <div
       className={`${styles.container} ${className}`}
-      onClick={onClick}
-      onKeyDown={onClick}
+      onClick={click}
+      onKeyDown={click}
       role="button"
       tabIndex={0}
     >
-      <img className={imgClassName} alt={name} src={`${baseImgUrl}${imgSrc}`} />
+      <img className={imgClassName} alt={name} src={imgSrc} />
 
-      {clickMode === 'check'
-        ? <input className={checkBoxClassName} type="checkbox" checked={checked} onClick={() => setChecked(!checked)} />
-        : <></>}
+      <input className={checkBoxClassName} type="checkbox" checked={checked} onClick={click} />
     </div>
   );
 }

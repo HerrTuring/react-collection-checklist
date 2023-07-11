@@ -1,25 +1,26 @@
 import React from 'react';
 
-import { itemData, standardsType } from '../../types';
+import { itemData } from '../../types';
 
 import Item from '../item';
 
 import styles from './style.module.css';
 
+type valueType = {
+  [key: string]: boolean
+}
+
 type collectionPropType = {
   data: Array<itemData>,
-  standards?: standardsType,
+  value: valueType ;
+  onClick: (newState: valueType) => any;
   className?: string,
   itemClassName?: string;
   imgClassName?: string;
-  checkBoxClassName?: string
+  checkBoxClassName?: string;
 }
 
 const defaultProps = {
-  standards: {
-    clickMode: 'check',
-    baseImgUrl: '',
-  },
   className: '',
   itemClassName: '',
   imgClassName: '',
@@ -29,21 +30,31 @@ const defaultProps = {
 function Collection(props: collectionPropType) {
   const {
     data,
-    standards,
     className,
     itemClassName,
     imgClassName,
     checkBoxClassName,
+    value,
+    onClick,
   } = props;
+
+  const click = (checked: boolean, name: string) => {
+    const newValue = { ...value };
+
+    newValue[name] = checked;
+
+    onClick(newValue);
+  };
 
   const Items = () => data.map((item) => (
     <Item
       data={item}
-      standards={standards}
       className={itemClassName}
       imgClassName={imgClassName}
       checkBoxClassName={checkBoxClassName}
       key={item.name}
+      checked={value[item.name] ?? false}
+      onClick={(checked: boolean) => click(checked, item.name)}
     />
   ));
 
