@@ -46,15 +46,15 @@ function Collection(props: collectionPropType) {
     onClick(newValue);
   };
 
-  const Items = () => data.map((item) => (
+  const Items = () => data.map((item, index) => (
     <Item
       data={item}
       className={itemClassName}
       imgClassName={imgClassName}
       checkBoxClassName={checkBoxClassName}
       key={item.name}
-      checked={value[item.name] ?? false}
-      onClick={(checked: boolean) => click(checked, item.name)}
+      checked={value[index] ?? false}
+      onClick={(checked: boolean) => click(checked, index.toString())}
     />
   ));
 
