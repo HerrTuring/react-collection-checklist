@@ -16,28 +16,21 @@ type collectionPropType = {
   onClick: (newState: valueType) => any;
   className?: string,
   itemClassName?: string;
+  overlayClassName?: string;
   imgClassName?: string;
   checkBoxClassName?: string;
 }
 
-const defaultProps = {
-  className: '',
-  itemClassName: '',
-  imgClassName: '',
-  checkBoxClassName: '',
-};
-
-function Collection(props: collectionPropType) {
-  const {
-    data,
-    className,
-    itemClassName,
-    imgClassName,
-    checkBoxClassName,
-    value,
-    onClick,
-  } = props;
-
+function Collection({
+  data,
+  className = '',
+  overlayClassName = '',
+  itemClassName = '',
+  imgClassName = '',
+  checkBoxClassName = '',
+  value,
+  onClick,
+}: collectionPropType) {
   const click = (checked: boolean, name: string) => {
     const newValue = { ...value };
 
@@ -50,9 +43,10 @@ function Collection(props: collectionPropType) {
     <Item
       data={item}
       className={itemClassName}
+      overlayClassName={overlayClassName}
       imgClassName={imgClassName}
       checkBoxClassName={checkBoxClassName}
-      key={item.name}
+      key={`${item.name}${index}`}
       checked={value[index] ?? false}
       onClick={(checked: boolean) => click(checked, index.toString())}
     />
@@ -64,7 +58,5 @@ function Collection(props: collectionPropType) {
     </div>
   );
 }
-
-Collection.defaultProps = defaultProps;
 
 export default Collection;

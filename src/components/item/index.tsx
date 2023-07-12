@@ -6,25 +6,23 @@ import styles from './style.module.css';
 
 type itemPropType = {
   data: itemData;
+  onClick: (arg0: boolean) => any;
   className?: string;
+  overlayClassName?: string;
   imgClassName?: string;
   checkBoxClassName?: string;
-  onClick: (arg0: boolean) => any;
   checked?: boolean;
 };
 
-const defaultProps = {
-  className: '',
-  imgClassName: '',
-  checkBoxClassName: '',
-  checked: false,
-};
-
-function Item(props: itemPropType) {
-  const {
-    data, className, imgClassName, checkBoxClassName, checked, onClick,
-  } = props;
-
+function Item({
+  data,
+  onClick,
+  className = '',
+  overlayClassName = '',
+  imgClassName = '',
+  checkBoxClassName = '',
+  checked = false,
+}: itemPropType) {
   const { name, img: imgSrc } = data;
 
   const click = () => {
@@ -39,13 +37,15 @@ function Item(props: itemPropType) {
       role="button"
       tabIndex={0}
     >
-      <img className={imgClassName} alt={name} src={imgSrc} />
+      {!checked
+        ? <div className={`${styles.overlay} ${overlayClassName}`} />
+        : <></>}
 
-      <input className={checkBoxClassName} type="checkbox" checked={checked} onClick={click} />
+      <img className={`${styles.image} ${imgClassName}`} alt={name} src={imgSrc} />
+
+      <input name={Math.random().toString()} className={`${styles.checkbox} ${checkBoxClassName}`} type="checkbox" checked={checked} onChange={click} />
     </div>
   );
 }
-
-Item.defaultProps = defaultProps;
 
 export default Item;
