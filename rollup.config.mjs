@@ -30,7 +30,7 @@ export default [{
 },
 {
   input: './.build/esm/types/index.d.ts',
-  output: [{ file: './.build/index.d.tsx', format: 'esm' }],
+  output: [{ file: './.build/index.d.ts', format: 'esm' }],
   plugins: [dts()],
   external: [/\.(css|less|scss)$/, 'react', 'react-dom'],
 },
