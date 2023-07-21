@@ -7,19 +7,14 @@ import postcss from 'rollup-plugin-postcss';
 
 import packageJson from './package.json' assert { type: 'json' };
 
-const commonOutputConfigs = {
-  name: packageJson.name,
-  file: packageJson.main,
-};
-
 export default [{
   input: './src/index.ts',
   output: [{
-    ...commonOutputConfigs,
+    file: packageJson.main,
     format: 'cjs',
   },
   {
-    ...commonOutputConfigs,
+    file: packageJson.module,
     format: 'esm',
   }],
   plugins: [
