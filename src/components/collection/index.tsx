@@ -1,36 +1,38 @@
 import React from 'react';
 
-import { itemData } from '../../types';
+import { itemDataType, valueType } from '../../types';
 
-import Item from '../item';
+import Item, { itemClassNamesType } from '../item';
 
 import styles from './style.module.css';
 
-type valueType = {
-  [key: string]: boolean
-}
-
-type collectionPropType = {
-  data: Array<itemData>,
+export type collectionPropType = {
+  data: Array<itemDataType>,
   value: valueType ;
   onClick: (newState: valueType) => any;
   className?: string,
-  itemClassName?: string;
-  overlayClassName?: string;
-  imgClassName?: string;
-  checkBoxClassName?: string;
+  itemClassNames?: itemClassNamesType;
 }
 
 function Collection({
   data,
   className = '',
-  overlayClassName = '',
-  itemClassName = '',
-  imgClassName = '',
-  checkBoxClassName = '',
+  itemClassNames = {
+    className: '',
+    overlayClassName: '',
+    imgClassName: '',
+    checkBoxClassName: '',
+  },
   value,
   onClick,
 }: collectionPropType) {
+  const {
+    className: itemClassName,
+    overlayClassName,
+    imgClassName,
+    checkBoxClassName,
+  } = itemClassNames;
+
   const click = (checked: boolean, name: string) => {
     const newValue = { ...value };
 
@@ -39,18 +41,21 @@ function Collection({
     onClick(newValue);
   };
 
-  const Items = () => data.map((item, index) => (
-    <Item
-      data={item}
-      className={itemClassName}
-      overlayClassName={overlayClassName}
-      imgClassName={imgClassName}
-      checkBoxClassName={checkBoxClassName}
-      key={`${item.name}${index}`}
-      checked={value[index] ?? false}
-      onClick={(checked: boolean) => click(checked, index.toString())}
-    />
-  ));
+  const Items = () => data.map((item) => {
+    const { name } = item;
+    return (
+      <Item
+        data={item}
+        className={itemClassName}
+        overlayClassName={overlayClassName}
+        imgClassName={imgClassName}
+        checkBoxClassName={checkBoxClassName}
+        key={name}
+        checked={value[name] ?? false}
+        onClick={(checked: boolean) => click(checked, name)}
+      />
+    );
+  });
 
   return (
     <div className={`${styles.container} ${className}`}>

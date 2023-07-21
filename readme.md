@@ -30,8 +30,8 @@ import { useState } from "react";
 import { Collection } from "react-collection-checklist";
 
 const data = [
-    { "img": "/path-to-local-image.png", "name": "Alt Text to Local Image" },
-    { "img": "https://domain.com/path-to-remote-image.png", "name": "Alt Text to Remote Image" }
+    { "img": "/path-to-local-image.png", "name": "uniqueNameToImage" },
+    { "img": "https://domain.com/path-to-remote-image.png", "name": "uniqueNameToImage2" }
 ];
 
 export default function Home() {
@@ -52,7 +52,7 @@ This component represents one item in the collection. While it was mainly made t
 import { useState } from "react";
 import { Item } from "react-collection-checklist";
 
-const data = { "img": "/path-to-local-image.png", "name": "Alt Text to Local Image" };
+const data = { "img": "/path-to-local-image.png", "name": "uniqueNameToImage" };
 
 export default function Home() {
 
@@ -81,13 +81,7 @@ export default function Home() {
 
 - className ( string ): Optional property to override the main div's className.
 
-- itemClassName ( string ): Optional property that will be passed to the className property of all Items.
-
-- overlayClassName: Optional property that will be passed to the overlayClassName property of all Items.
-
-- imgClassName: Optional property that will be passed to the imgClassName property of all Items.
-
-- checkBoxClassName: Optional property that will be passed to the checkBoxClassName property of all Items.
+- itemClassNames ( { className, overlayClassName, imgClassName, checkBoxClassName } ): Optional property that carries all classNames to be passed through to properties with same name to all Items. Refer to the properties of same names in the Items section for more information on each.
 
 ### Item
 

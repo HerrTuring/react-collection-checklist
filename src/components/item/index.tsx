@@ -1,18 +1,21 @@
 import React from 'react';
 
-import type { itemData } from '../../types';
+import type { itemDataType } from '../../types';
 
 import styles from './style.module.css';
 
-type itemPropType = {
-  data: itemData;
-  onClick: (arg0: boolean) => any;
+export type itemClassNamesType = {
   className?: string;
   overlayClassName?: string;
   imgClassName?: string;
   checkBoxClassName?: string;
+}
+
+export interface itemPropType extends itemClassNamesType {
+  data: itemDataType;
+  onClick: (newState: boolean) => any;
   checked?: boolean;
-};
+}
 
 function Item({
   data,
