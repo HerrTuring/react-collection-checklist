@@ -19,7 +19,41 @@ npm install --save react-collection-checklist
 
 ## Usage
 
-The package has two components:
+The package has three components:
+
+### Paginated Collection
+
+This component wraps around the Collection component adding pagination. Despite that, everything else works exactly as the Collection component.
+
+```
+import { useState } from "react";
+import { PaginatedCollection } from "react-collection-checklist";
+
+const data = [
+    { "img": "/path-to-local-image.png", "name": "uniqueNameToImage" },
+    { "img": "https://domain.com/path-to-remote-image.png", "name": "uniqueNameToImage2" }
+];
+
+export default function Home() {
+
+  // When any of the images is clicked the state will be updated adding the index of the selected Item and its checked status (boolean) to the object.
+  const [state, setState] = useState({});
+
+  // This holds the state of the pagination, the component expects the starting index to be 1, not 0.
+  const [paginationIndex, setPaginationIndex] = useState(1);
+
+  return (
+    <PaginatedCollection
+      data={data}
+      value={state}
+      onClick={setState}
+      paginationIndex={paginationIndex}
+      onPaginationClick={setPaginationIndex}
+    />
+  );
+};
+
+```
 
 ### Collection
 
@@ -70,6 +104,25 @@ export default function Home() {
 ```
 
 ## Properties
+
+### Paginated Collection
+
+Besides the properties listed bellow, this component also receives all properties that Collection receives, the only difference being that the className property will refer to this component and not the Collection inside. For more information on those components refer to the Collection section bellow.
+
+- paginationIndex ( number ): Index of the current paginated selection. The index starts at 1, not 0.
+
+- onPaginationClick ( function ): Function that will run when a pagination button is clicked. Generally expected to be the setter function of the index.
+
+- pageLimit ( number ): Option parameter to ets the size of the paginated selections. The standard is 20.
+
+- collectionClassName ( string ): Optional property passed through as the className for the inner Collection component.
+
+- buttonsContainerClassName ( string ): Optional property to add a className to the pagination buttons' container.
+
+- paginationButtonsClassNames ({ buttonClassName, buttonNotFirstClassName, buttonSelectedClassName }): Optional property to add classNames to the buttons.
+  - buttonClassName ( string ): A generic className added to all buttons.
+  - buttonNotFirstClassName ( string ): A className that will be added to all besides the first one.
+  - buttonSelectedClassName ( string ): A className that is added to the currently selected one.
 
 ### Collection
 
