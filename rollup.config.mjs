@@ -4,11 +4,15 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
+import preserveDirectives from 'rollup-plugin-preserve-directives';
 
 const plugins = [
   peerDepsExternal(),
   nodeResolve(),
   commonjs(),
+  postcss({
+    plugins: [],
+  }),
 ];
 
 const outputConfig = {
@@ -31,10 +35,13 @@ export default [{
       tsconfig: 'tsconfig.json',
       declarationDir: '.build/cjs/types/',
     }),
-    postcss({
-      plugins: [],
-    }),
+    preserveDirectives(),
   ],
+  onwarn(warning, warn) {
+    if (warning.code !== 'MODULE_LEVEL_DIRECTIVE') {
+      warn(warning);
+    }
+  },
 }, {
   input: 'src/index.ts',
   output: [{
@@ -48,10 +55,13 @@ export default [{
       tsconfig: 'tsconfig.json',
       declarationDir: '.build/esm/types/',
     }),
-    postcss({
-      plugins: [],
-    }),
+    preserveDirectives(),
   ],
+  onwarn(warning, warn) {
+    if (warning.code !== 'MODULE_LEVEL_DIRECTIVE') {
+      warn(warning);
+    }
+  },
 }, {
   input: '.build/esm/types/index.d.ts',
   output: [{ file: '.build/index.d.ts', format: 'esm' }],
