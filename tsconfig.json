@@ -10,7 +10,9 @@
     "moduleResolution": "node",
     "declaration": true,
     "emitDeclarationOnly": true,
-    "declarationDir": "types",
     "allowSyntheticDefaultImports": true,
-  }
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
 }

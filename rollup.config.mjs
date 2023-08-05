@@ -1,36 +1,60 @@
-import resolve from '@rollup/plugin-node-resolve';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import commonjs from '@rollup/plugin-commonjs';
-import typescript from '@rollup/plugin-typescript';
-import external from 'rollup-plugin-peer-deps-external';
-import dts from 'rollup-plugin-dts';
+import nodeResolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
+import typescript from '@rollup/plugin-typescript';
+import dts from 'rollup-plugin-dts';
 
-import packageJson from './package.json' assert { type: 'json' };
+const plugins = [
+  peerDepsExternal(),
+  nodeResolve(),
+  commonjs(),
+];
+
+const outputConfig = {
+  exports: 'named',
+  sourcemap: true,
+  preserveModules: true,
+  interop: 'auto',
+};
 
 export default [{
-  input: './src/index.ts',
+  input: 'src/index.ts',
   output: [{
-    file: packageJson.main,
+    ...outputConfig,
+    dir: '.build/cjs',
     format: 'cjs',
-    sourcemap: true,
-  },
-  {
-    file: packageJson.module,
-    format: 'esm',
-    sourcemap: true,
   }],
   plugins: [
-    external(),
-    resolve(),
-    commonjs(),
-    typescript({ tsconfig: './tsconfig.json' }),
+    ...plugins,
+    typescript({
+      tsconfig: 'tsconfig.json',
+      declarationDir: '.build/cjs/types/',
+    }),
     postcss({
       plugins: [],
     }),
   ],
 }, {
-  input: './.build/esm/types/index.d.ts',
-  output: [{ file: './.build/index.d.ts', format: 'esm' }],
+  input: 'src/index.ts',
+  output: [{
+    ...outputConfig,
+    dir: '.build/esm',
+    format: 'esm',
+  }],
+  plugins: [
+    ...plugins,
+    typescript({
+      tsconfig: 'tsconfig.json',
+      declarationDir: '.build/esm/types/',
+    }),
+    postcss({
+      plugins: [],
+    }),
+  ],
+}, {
+  input: '.build/esm/types/index.d.ts',
+  output: [{ file: '.build/index.d.ts', format: 'esm' }],
   plugins: [dts()],
   external: [/\.(css|less|scss)$/, 'react', 'react-dom'],
 }];
