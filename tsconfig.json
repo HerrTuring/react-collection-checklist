@@ -11,8 +11,5 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
-  },
-  "include": [
-    "./src/**/*.ts"
-  ]
+  }
 }

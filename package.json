@@ -2,12 +2,23 @@
   "name": "react-collection-checklist",
   "version": "2.0.0",
   "description": "Simple component to create a checklist for collections.",
-  "main": "./.build/cjs/src/index.js",
-  "module": "./.build/esm/src/index.js",
   "files": [
     "./.build"
   ],
-  "types": "./.build/index.d.ts",
+  "exports": {
+    ".": "./.build/esm/src/index.js",
+    "./client": "./.build/esm/src/clientComponents/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./.build/index.d.ts"
+      ],
+      "./client": [
+        "./.build/client.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "lint": "eslint src --ext .ts,.tsx src",
     "build": "rollup -c",
