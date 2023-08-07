@@ -1,26 +1,25 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 
-const initializer = <T>(name: string, startingValue: T) => {
-  const savedValue = localStorage.getItem(name);
+const useLocalStorage = <T>(name: string, startingValue: T) => {
+  const reducer = (_: T, newData: T) => {
+    localStorage.setItem(name, JSON.stringify(newData));
 
-  if (savedValue !== null)
-    return JSON.parse(savedValue) as T;
+    return newData;
+  };
 
-  return startingValue;
+  const [value, dispatch] = useReducer(
+    reducer,
+    startingValue,
+  );
+
+  useEffect(() => {
+    const savedValue = localStorage?.getItem(name);
+
+    if (savedValue !== null)
+      dispatch(JSON.parse(savedValue) as T);
+  }, []);
+
+  return [value, dispatch];
 };
-
-const reducer = <T> (name: string, newData: T) => {
-  localStorage.setItem(name, JSON.stringify(newData));
-
-  console.log(localStorage.getItem(name));
-
-  return newData;
-};
-
-const useLocalStorage = <T>(name: string, startingValue: T) => useReducer(
-  (_: T, newState: T) => reducer<T>(name, newState),
-  startingValue,
-  () => initializer<T>(name, startingValue),
-);
 
 export default useLocalStorage;

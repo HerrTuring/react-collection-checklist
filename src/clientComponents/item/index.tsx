@@ -5,14 +5,15 @@ import React from 'react';
 import { Item } from '../../components';
 import { itemClassNamesType } from '../../components/item';
 
-import useLocalStorage from '../../hooks/useLocalStorage';
-
 import type { itemDataType } from '../../types';
+import usePersistentData, { persistModeType } from '../../hooks/usePersistentData';
 
 export interface clientItemPropType extends itemClassNamesType {
   name: string,
   data: itemDataType;
   onClick?: (newState: boolean) => any;
+  startingValue?: boolean;
+  persistMode?: persistModeType;
 }
 
 function ItemComp({
@@ -23,13 +24,19 @@ function ItemComp({
   overlayClassName = '',
   imgClassName = '',
   checkBoxClassName = '',
+  startingValue = false,
+  persistMode = 'none',
 }: clientItemPropType) {
-  const [checked, setChecked] = useLocalStorage<boolean>(name, false);
+  const [checked, setChecked] = usePersistentData<boolean>({
+    name,
+    mode: persistMode,
+    defaultValue: startingValue,
+  });
 
   const click = (newState: boolean) => {
     onClick(newState);
 
-    setChecked(newState);
+    (setChecked as React.Dispatch<boolean>)(newState);
   };
 
   return (
@@ -40,7 +47,7 @@ function ItemComp({
       overlayClassName={overlayClassName}
       imgClassName={imgClassName}
       checkBoxClassName={checkBoxClassName}
-      checked={checked}
+      checked={checked as boolean}
     />
   );
 }
