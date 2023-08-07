@@ -13,7 +13,7 @@ export default [{
     sourcemap: true,
     preserveModules: true,
     interop: 'auto',
-    dir: '.build/esm',
+    dir: '.build/',
     format: 'esm',
   }],
   plugins: [
@@ -25,7 +25,7 @@ export default [{
     }),
     typescript({
       tsconfig: 'tsconfig.json',
-      declarationDir: '.build/esm/types/',
+      declarationDir: '.build/types/',
     }),
     preserveDirectives(),
   ],
@@ -35,12 +35,12 @@ export default [{
     }
   },
 }, {
-  input: '.build/esm/types/index.d.ts',
+  input: '.build/types/index.d.ts',
   output: [{ file: '.build/index.d.ts', format: 'esm' }],
   plugins: [dts()],
   external: [/\.(css|less|scss)$/, 'react', 'react-dom'],
 }, {
-  input: '.build/esm/types/clientComponents/index.d.ts',
+  input: '.build/types/clientComponents/index.d.ts',
   output: [{ file: '.build/client.d.ts', format: 'esm' }],
   plugins: [dts()],
   external: [/\.(css|less|scss)$/, 'react', 'react-dom'],

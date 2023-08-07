@@ -6,8 +6,8 @@
     "./.build"
   ],
   "exports": {
-    ".": "./.build/esm/src/index.js",
-    "./client": "./.build/esm/src/clientComponents/index.js"
+    ".": "./.build/src/index.js",
+    "./client": "./.build/src/clientComponents/index.js"
   },
   "typesVersions": {
     "*": {
