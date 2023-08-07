@@ -32,11 +32,16 @@ function Item({
     onClick(!(checked as boolean));
   };
 
+  const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (['Enter', 'Space'].includes(event.code))
+      click();
+  };
+
   return (
     <div
       className={`${styles.container} ${className}`}
       onClick={click}
-      onKeyDown={click}
+      onKeyDown={onKeyDown}
       role="button"
       tabIndex={0}
     >
