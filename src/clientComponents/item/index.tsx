@@ -9,16 +9,16 @@ import type { itemDataType } from '../../types';
 import usePersistentData, { persistModeType } from '../../hooks/usePersistentData';
 
 export interface clientItemPropType extends itemClassNamesType {
-  name: string,
   data: itemDataType;
+  name?: string | undefined,
   onClick?: (newState: boolean) => any;
   startingValue?: boolean;
   persistMode?: persistModeType;
 }
 
 function ItemComp({
-  name,
   data,
+  name = undefined,
   onClick = () => null,
   className = '',
   overlayClassName = '',

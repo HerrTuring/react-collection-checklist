@@ -19,9 +19,11 @@ npm install --save react-collection-checklist
 
 ## Usage
 
-The package has three components:
+The package has three server components and one client component:
 
-### Paginated Collection
+### Server Components
+
+#### Paginated Collection
 
 This component wraps around the Collection component adding pagination. Despite that, everything else works exactly as the Collection component.
 
@@ -55,7 +57,7 @@ export default function Home() {
 
 ```
 
-### Collection
+#### Collection
 
 This component creates the entire checklist by itself, creating multiple instances of the Item component and wrapping them in a container that makes it easier to keep the layout responsive.
 
@@ -78,7 +80,7 @@ export default function Home() {
 
 ```
 
-### Item
+#### Item
 
 This component represents one item in the collection. While it was mainly made to be used inside Collection, it is possible to use it alone following this pattern:
 
@@ -103,9 +105,33 @@ export default function Home() {
 };
 ```
 
+### Client Components
+
+#### Item
+
+This component is a wrapper around the original Item server component, adding to it state and possibly data persistence without need of external code:
+
+```
+import { useState } from "react";
+import { Item } from "react-collection-checklist/client";
+
+const data = { "img": "/path-to-local-image.png", "name": "uniqueNameToImage" };
+
+export default function Home() {
+  return (
+    <Item
+      data={data}
+      persistMode="localStorage"
+    />
+  );
+};
+```
+
 ## Properties
 
-### Paginated Collection
+### Server Components
+
+#### Paginated Collection
 
 Besides the properties listed bellow, this component also receives all properties that Collection receives, the only difference being that the className property will refer to this component and not the Collection inside. For more information on those components refer to the Collection section bellow.
 
@@ -124,7 +150,7 @@ Besides the properties listed bellow, this component also receives all propertie
   - buttonNotFirstClassName ( string ): A className that will be added to all besides the first one.
   - buttonSelectedClassName ( string ): A className that is added to the currently selected one.
 
-### Collection
+#### Collection
 
 - data ([{ name: string, img: string }]): Array of the objects that will be passed as "data" to the Item component. The length of the array decides how many Item components will be instantiated.
 
@@ -136,7 +162,7 @@ Besides the properties listed bellow, this component also receives all propertie
 
 - itemClassNames ( { className, overlayClassName, imgClassName, checkBoxClassName } ): Optional property that carries all classNames to be passed through to properties with same name to all Items. Refer to the properties of same names in the Items section for more information on each.
 
-### Item
+#### Item
 
 - data ({ name: string, img: string }): Object where that has the alt text as "name" and the source of the image as "img".
 
@@ -152,9 +178,31 @@ Besides the properties listed bellow, this component also receives all propertie
 
 - checked ( boolean ): Property that defines the current state of the checkbox.
 
+### Client Components
+
+#### Item
+
+- data ({ name: string, img: string }): Object where that has the alt text as "name" and the source of the image as "img".
+
+- name ( string ): Optional parameter that is required if persistMode is set to "localStorage", this will define the name that is used to save the current state in the localStorage.
+
+- onClick ( boolean ): Optional property of function that will be ran with the new checked state when the image is clicked.
+
+- className ( string ): Optional property to override the main div's className.
+
+- overlayClassName ( string ): Optional property to override the colored overlay's div className.
+
+- imgClassName ( string ): Optional property to override the image's className.
+
+- checkBoxClassName ( string ): Optional property to override the checkbox's className.
+
+- startingValue ( boolean ): Optional property that defines the starting state of the checkbox. This will be ignored if persistMode is set to localStorage and there is information already saved.
+
+- persistMode ( "none" | "localStorage" ): Optional property that defines if the data will persist through localStorage or not. Default: "none"
+
 ## MIT License
 
-Copyright (c) 2023 Erik Marques Schroeder
+Copyright (c) 2023 HerrTuring
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
