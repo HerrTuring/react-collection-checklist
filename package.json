@@ -11,11 +11,11 @@
   },
   "typesVersions": {
     "*": {
+      "client": [
+        "./.build/client.d.ts"
+      ],
       "*": [
         "./.build/index.d.ts"
-      ],
-      "./client": [
-        "./.build/client.d.ts"
       ]
     }
   },
