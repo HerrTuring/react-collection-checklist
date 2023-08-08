@@ -193,6 +193,26 @@ Besides the properties listed bellow, this component also receives all propertie
 
 ### Client Components
 
+#### Collection
+
+- data ([{ name: string, img: string }]): Array of the objects that will be passed as "data" to the Item component. The length of the array decides how many Item components will be instantiated.
+
+- name ( string ): Optional parameter that is required if persistMode is set to "localStorage", this will define the name that is used to save the current state in the localStorage.
+
+- onClick ( function ): Optional property of the function that will be run with the updated value after each click to any of the Items.
+
+- className ( string ): Optional property to override the main div's className.
+
+- itemClassNames ( { className, overlayClassName, imgClassName, checkBoxClassName } ): Optional property that carries all classNames to be passed through to properties with same name to all Items. Refer to the properties of same names in the Items section for more information on each.
+
+- startingValue ( {} ): Optional property that defines the starting state of the collection. This will be ignored if persistMode is set to localStorage and there is information already saved.
+
+- persistMode ( "none" | "localStorage" ): Optional property that defines if the data will persist through localStorage or not. This property must be set as a constant, as changing it between states will change the number and type of hooks causing react to crash. Default: "none"
+
+- noOverlay ( boolean ): Property that is passed through to the Item components to remove overlay that appears when checkbox is unchecked.
+
+- noCheckbox ( boolean ): Property that is passed through to the Item components to remove checkbox.
+
 #### Item
 
 - data ({ name: string, img: string }): Object where that has the alt text as "name" and the source of the image as "img".
