@@ -11,8 +11,12 @@ export type itemClassNamesType = {
   checkBoxClassName?: string;
 }
 
-export interface itemPropType extends itemClassNamesType {
+// Prop types that are the same in both server and client components.
+export interface itemSharedPropTypes extends itemClassNamesType {
   data: itemDataType;
+}
+
+export interface itemPropType extends itemSharedPropTypes {
   onClick: (newState: boolean) => any;
   checked?: boolean;
 }
