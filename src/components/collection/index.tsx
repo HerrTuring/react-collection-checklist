@@ -6,12 +6,18 @@ import Item, { itemClassNamesType } from '../item';
 
 import styles from './style.module.css';
 
-export type collectionPropType = {
+export type collectionSharedPropType = {
   data: Array<itemDataType>,
-  value: valueType ;
-  onClick: (newState: valueType) => any;
   className?: string,
   itemClassNames?: itemClassNamesType;
+  noOverlay?: boolean;
+  noCheckbox?: boolean;
+}
+
+// Prop types that are the same in both server and client components.
+export interface collectionPropType extends collectionSharedPropType {
+  value: valueType;
+  onClick: (newState: valueType) => any;
 }
 
 function Collection({
@@ -25,6 +31,8 @@ function Collection({
   },
   value,
   onClick,
+  noOverlay = false,
+  noCheckbox = false,
 }: collectionPropType) {
   const {
     className: itemClassName,
@@ -53,6 +61,8 @@ function Collection({
         key={name}
         checked={value[name] ?? false}
         onClick={(checked: boolean) => click(checked, name)}
+        noOverlay={noOverlay}
+        noCheckbox={noCheckbox}
       />
     );
   });

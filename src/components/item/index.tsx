@@ -14,6 +14,8 @@ export type itemClassNamesType = {
 // Prop types that are the same in both server and client components.
 export interface itemSharedPropType extends itemClassNamesType {
   data: itemDataType;
+  noOverlay?: boolean;
+  noCheckbox?: boolean;
 }
 
 export interface itemPropType extends itemSharedPropType {
@@ -29,6 +31,8 @@ function Item({
   imgClassName = '',
   checkBoxClassName = '',
   checked = false,
+  noOverlay = false,
+  noCheckbox = false,
 }: itemPropType) {
   const { name, img: imgSrc } = data;
 
@@ -49,13 +53,15 @@ function Item({
       role="button"
       tabIndex={0}
     >
-      {!checked
+      {!checked && !noOverlay
         ? <div className={`${styles.overlay} ${overlayClassName}`} />
         : <></>}
 
       <img className={`${styles.image} ${imgClassName}`} alt={name} src={imgSrc} />
 
-      <input name={Math.random().toString()} className={`${styles.checkbox} ${checkBoxClassName}`} type="checkbox" checked={checked} onChange={click} />
+      {!noCheckbox
+        ? <input name={Math.random().toString()} className={`${styles.checkbox} ${checkBoxClassName}`} type="checkbox" checked={checked} onChange={click} />
+        : <></>}
     </div>
   );
 }

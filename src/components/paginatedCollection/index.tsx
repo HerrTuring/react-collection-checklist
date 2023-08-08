@@ -49,6 +49,8 @@ export interface paginatedCollectionPropType extends collectionPropType {
   collectionClassName?: string,
   buttonsContainerClassName?: string,
   paginationButtonsClassNames?: paginationButtonsClassNamesType
+  noOverlay?: boolean;
+  noCheckbox?: boolean;
 }
 
 function PaginatedCollection({
@@ -72,6 +74,8 @@ function PaginatedCollection({
   pageLimit = 20,
   paginationIndex = 1,
   onPaginationClick,
+  noOverlay = false,
+  noCheckbox = false,
 }: paginatedCollectionPropType) {
   const {
     buttonClassName,
@@ -94,6 +98,8 @@ function PaginatedCollection({
         itemClassNames={itemClassNames}
         value={value}
         onClick={onClick}
+        noOverlay={noOverlay}
+        noCheckbox={noCheckbox}
       />
 
       <div className={`${styles.paginationBar} ${buttonsContainerClassName}`}>
