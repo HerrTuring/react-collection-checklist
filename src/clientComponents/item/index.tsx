@@ -3,11 +3,11 @@
 import React from 'react';
 
 import { Item } from '../../components';
-import { itemSharedPropTypes } from '../../components/item';
+import { itemSharedPropType } from '../../components/item';
 
 import usePersistentData, { persistModeType } from '../../hooks/usePersistentData';
 
-export interface clientItemPropType extends itemSharedPropTypes {
+export interface clientItemPropType extends itemSharedPropType {
   name?: string | undefined,
   onClick?: (newState: boolean) => any;
   startingValue?: boolean;

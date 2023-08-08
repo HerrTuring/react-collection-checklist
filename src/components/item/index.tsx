@@ -12,11 +12,11 @@ export type itemClassNamesType = {
 }
 
 // Prop types that are the same in both server and client components.
-export interface itemSharedPropTypes extends itemClassNamesType {
+export interface itemSharedPropType extends itemClassNamesType {
   data: itemDataType;
 }
 
-export interface itemPropType extends itemSharedPropTypes {
+export interface itemPropType extends itemSharedPropType {
   onClick: (newState: boolean) => any;
   checked?: boolean;
 }
