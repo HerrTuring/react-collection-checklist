@@ -146,9 +146,14 @@ Besides the properties listed bellow, this component also receives all propertie
 - buttonsContainerClassName ( string ): Optional property to add a className to the pagination buttons' container.
 
 - paginationButtonsClassNames ({ buttonClassName, buttonNotFirstClassName, buttonSelectedClassName }): Optional property to add classNames to the buttons.
+
   - buttonClassName ( string ): A generic className added to all buttons.
   - buttonNotFirstClassName ( string ): A className that will be added to all besides the first one.
   - buttonSelectedClassName ( string ): A className that is added to the currently selected one.
+
+- noOverlay ( boolean ): Property that is passed through to the Item components to remove overlay that appears when checkbox is unchecked.
+
+- noCheckbox ( boolean ): Property that is passed through to the Item components to remove checkbox.
 
 #### Collection
 
@@ -161,6 +166,10 @@ Besides the properties listed bellow, this component also receives all propertie
 - className ( string ): Optional property to override the main div's className.
 
 - itemClassNames ( { className, overlayClassName, imgClassName, checkBoxClassName } ): Optional property that carries all classNames to be passed through to properties with same name to all Items. Refer to the properties of same names in the Items section for more information on each.
+
+- noOverlay ( boolean ): Property that is passed through to the Item components to remove overlay that appears when checkbox is unchecked.
+
+- noCheckbox ( boolean ): Property that is passed through to the Item components to remove checkbox.
 
 #### Item
 
@@ -177,6 +186,10 @@ Besides the properties listed bellow, this component also receives all propertie
 - checkBoxClassName ( string ): Optional property to override the checkbox's className.
 
 - checked ( boolean ): Property that defines the current state of the checkbox.
+
+- noOverlay ( boolean ): Property to remove overlay that appears when checkbox is unchecked.
+
+- noCheckbox ( boolean ): Property to remove checkbox.
 
 ### Client Components
 
@@ -199,6 +212,10 @@ Besides the properties listed bellow, this component also receives all propertie
 - startingValue ( boolean ): Optional property that defines the starting state of the checkbox. This will be ignored if persistMode is set to localStorage and there is information already saved.
 
 - persistMode ( "none" | "localStorage" ): Optional property that defines if the data will persist through localStorage or not. This property must be set as a constant, as changing it between states will change the number and type of hooks causing react to crash. Default: "none"
+
+- noOverlay ( boolean ): Property to remove overlay that appears when checkbox is unchecked.
+
+- noCheckbox ( boolean ): Property to remove checkbox.
 
 ## MIT License
 
