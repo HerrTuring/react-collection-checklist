@@ -17,7 +17,7 @@ export type collectionSharedPropType = {
 // Prop types that are the same in both server and client components.
 export interface collectionPropType extends collectionSharedPropType {
   value: valueType;
-  onClick: (newState: valueType) => any;
+  onClick: (newState: valueType, itemName: string, newItemState: boolean) => any;
 }
 
 function Collection({
@@ -46,7 +46,7 @@ function Collection({
 
     newValue[name] = checked;
 
-    onClick(newValue);
+    onClick(newValue, name, checked);
   };
 
   const Items = () => data.map((item) => {
