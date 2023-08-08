@@ -2,10 +2,8 @@
 
 import React from 'react';
 
-import { Item } from '../../components';
-import { itemSharedPropType } from '../../components/item';
-
 import usePersistentData, { persistModeType } from '../../hooks/usePersistentData';
+import Item, { itemSharedPropType } from '../../components/item';
 
 export interface clientItemPropType extends itemSharedPropType {
   name?: string | undefined,
@@ -34,7 +32,7 @@ function ItemComp({
   const click = (newState: boolean) => {
     onClick(newState);
 
-    (setChecked as React.Dispatch<boolean>)(newState);
+    setChecked(newState);
   };
 
   return (
@@ -45,7 +43,7 @@ function ItemComp({
       overlayClassName={overlayClassName}
       imgClassName={imgClassName}
       checkBoxClassName={checkBoxClassName}
-      checked={checked as boolean}
+      checked={checked}
     />
   );
 }

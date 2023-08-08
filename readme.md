@@ -198,7 +198,7 @@ Besides the properties listed bellow, this component also receives all propertie
 
 - startingValue ( boolean ): Optional property that defines the starting state of the checkbox. This will be ignored if persistMode is set to localStorage and there is information already saved.
 
-- persistMode ( "none" | "localStorage" ): Optional property that defines if the data will persist through localStorage or not. Default: "none"
+- persistMode ( "none" | "localStorage" ): Optional property that defines if the data will persist through localStorage or not. This property must be set as a constant, as changing it between states will change the number and type of hooks causing react to crash. Default: "none"
 
 ## MIT License
 
