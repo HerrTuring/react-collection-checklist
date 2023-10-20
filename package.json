@@ -1,6 +1,6 @@
 {
   "name": "react-collection-checklist",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Simple component to create a checklist for collections.",
   "files": [
     "./.build"
