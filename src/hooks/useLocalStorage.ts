@@ -1,25 +1,25 @@
-import { useEffect, useReducer } from 'react';
+import { type Dispatch, useEffect, useReducer } from 'react';
 
-const useLocalStorage = <T>(name: string, startingValue: T) => {
-  const reducer = (_: T, newData: T) => {
-    localStorage.setItem(name, JSON.stringify(newData));
+const useLocalStorage = <T>(name: string, startingValue: T): [T, Dispatch<T>] => {
+    const reducer = (_: T, newData: T): T => {
+        localStorage.setItem(name, JSON.stringify(newData));
 
-    return newData;
-  };
+        return newData;
+    };
 
-  const [value, dispatch] = useReducer(
-    reducer,
-    startingValue,
-  );
+    const [value, dispatch] = useReducer(
+        reducer,
+        startingValue
+    );
 
-  useEffect(() => {
-    const savedValue = localStorage?.getItem(name);
+    useEffect(() => {
+        const savedValue = localStorage?.getItem(name);
 
-    if (savedValue !== null)
-      dispatch(JSON.parse(savedValue) as T);
-  }, []);
+        if (savedValue !== null)
+            dispatch(JSON.parse(savedValue) as T);
+    }, []);
 
-  return [value, dispatch];
+    return [value, dispatch];
 };
 
 export default useLocalStorage;

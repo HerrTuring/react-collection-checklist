@@ -8,15 +8,3 @@
     flex-direction: row;
     justify-content: center;    
 }
-
-.button {
-    padding: 10px;
-}
-
-.buttonNotFirst {
-    border-left: 1px white solid;
-}
-
-.selectedButton {
-    background-color: red;
-}
