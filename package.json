@@ -1,67 +1,75 @@
 {
-  "name": "react-collection-checklist",
-  "version": "3.1.1",
-  "description": "Simple component to create a checklist for collections.",
-  "files": [
-    "./.build"
-  ],
-  "exports": {
-    ".": "./.build/src/index.js",
-    "./client": "./.build/src/clientComponents/index.js"
-  },
-  "typesVersions": {
-    "*": {
-      "client": [
-        "./.build/client.d.ts"
-      ],
-      "*": [
-        "./.build/index.d.ts"
-      ]
-    }
-  },
-  "scripts": {
-    "lint": "eslint src --ext .ts,.tsx src",
-    "lint-fix": "eslint src --fix --ext .ts,.tsx src",
-    "build": "rollup -c",
-    "watch": "rollup -c -w",
-    "generate-css-types": "tcm src && npm run lint-fix"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/HerrTuring/react-collection-checklist.git"
-  },
-  "author": "HerrTuring",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/HerrTuring/react-collection-checklist/issues"
-  },
-  "homepage": "https://github.com/HerrTuring/react-collection-checklist#readme",
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.2",
-    "@rollup/plugin-node-resolve": "^15.1.0",
-    "@rollup/plugin-typescript": "^11.1.2",
-    "@types/react": "^18.2.14",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
-    "eslint": "^8.44.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "postcss": "^8.4.25",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup": "^3.26.2",
-    "rollup-plugin-dts": "^5.3.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-preserve-directives": "^0.2.0",
-    "tslib": "^2.6.0",
-    "typed-css-modules": "^0.8.0",
-    "typescript": "^5.1.6"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+    "name": "react-collection-checklist",
+    "module": "./dist/index.mjs",
+    "type": "module",
+    "version": "4.0.0",
+    "description": "Simple component to create a checklist for collections.",
+    "repository": "git@github.com/HerrTuring/react-collection-checklist.git",
+    "author": "HerrTuring",
+    "license": "MIT",
+    "keywords": [
+        "react",
+        "image",
+        "checklist"
+    ],
+    "scripts": {
+        "start": "node ",
+        "build": "rollup -c",
+        "watch": "rollup -c -w",
+        "lint": "eslint src --ext .ts,.tsx",
+        "lint-fix": "eslint src --ext .ts,.tsx --fix",
+        "generate-css-types": "tcm src && npm run lint-fix"
+    },
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs"
+        },
+        "./client": {
+            "import": "./dist/client/index.mjs"
+        }
+    },
+    "typesVersions": {
+        "*": {
+            "*": [
+                "./dist/types/index.d.ts"
+            ],
+            "client": [
+                "./dist/types/client.d.ts"
+            ]
+        }
+    },
+    "dependencies": {
+        "style-inject": "^0.3.0"
+    },
+    "devDependencies": {
+        "@rollup/plugin-json": "^6.0.1",
+        "@rollup/plugin-node-resolve": "^15.1.0",
+        "@rollup/plugin-typescript": "^11.1.5",
+        "@types/node": "^20.5.2",
+        "@types/react": "^18.2.33",
+        "@types/rollup-plugin-peer-deps-external": "^2.2.3",
+        "@typescript-eslint/eslint-plugin": "^6.4.1",
+        "eslint": "^8.47.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-config-standard-with-typescript": "^38.0.0",
+        "eslint-plugin-import": "^2.28.1",
+        "eslint-plugin-n": "^15.7.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "eslint-plugin-promise": "^6.1.1",
+        "rollup": "^3.26.2",
+        "rollup-plugin-copy": "^3.5.0",
+        "rollup-plugin-delete": "^2.0.0",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
+        "rollup-plugin-postcss": "^4.0.2",
+        "typed-css-modules": "^0.8.0",
+        "typescript": "^5.2.2"
+    },
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "funding": "https://www.buymeacoffee.com/herrturing"
 }

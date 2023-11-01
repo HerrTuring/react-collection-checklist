@@ -1,98 +1,42 @@
 {
-    "root": true,
     "extends": [
-        "plugin:@typescript-eslint/recommended",
-        "airbnb"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "project": [
-            "./tsconfig.json"
-        ]
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "prettier"
+        "standard-with-typescript"
     ],
     "overrides": [
         {
             "files": [
-                "src/**/*.ts[x]",
-                "scripts/*.js"
+                "*.js",
+                "*.jsx",
+                "*.ts",
+                "*.tsx",
+                "*.d.ts",
+                "*.mjs",
+                "*.cjs"
             ]
         }
     ],
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "extensions": [
-                    ".js",
-                    ".jsx",
-                    ".ts",
-                    ".tsx"
-                ]
-            }
-        }
+    "parserOptions": {
+        "project": "./tsconfig.json"
     },
     "rules": {
-        "@typescript-eslint/strict-boolean-expressions": [
-            1,
-            {
-                "allowString": false,
-                "allowNumber": false
-            }
-        ],
-        "curly": "off",
-        "no-param-reassign": "off",
-        "no-use-before-define": "off",
-        "no-static-element-interactions": "off",
-        "import/prefer-default-export": "off",
-        "import/no-dynamic-require": "off",
-        "import/extensions": "off",
-        "no-constant-condition": [
+        "@typescript-eslint/semi": "off",
+        "semi": [
             "error",
-            {
-                "checkLoops": false
-            }
+            "always"
         ],
-        "no-await-in-loop": "off",
-        "no-underscore-dangle": "off",
-        "no-console": "off",
-        "no-plusplus": "off",
-        "no-alert": "off",
-        "import/no-cycle": "off",
-        "no-continue": "off",
-        "no-loop-func": "off",
-        "jsx-a11y/label-has-associated-control": "off",
-        "no-restricted-globals": "off",
+        "@typescript-eslint/indent": [
+            "error",
+            4
+        ],
+        "@typescript-eslint/space-before-function-paren": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "curly": "off",
+        "@typescript-eslint/member-delimiter-style": "off",
+        "prefer-template": "error",
         "nonblock-statement-body-position": [
             "error",
             "below"
         ],
-        "class-methods-use-this": "off",
-        "no-empty-function": "off",
-        "no-restricted-syntax": "off",
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": [
-            "error"
-        ],
-        "@typescript-eslint/no-explicit-any": "off",
-        "import/no-extraneous-dependencies": "off",
-        "react/jsx-no-useless-fragment": "off",
-        "react/jsx-filename-extension": [
-            1,
-            {
-                "extensions": [
-                    ".js",
-                    ".jsx",
-                    "tsx"
-                ]
-            }
-        ],
-        "react/require-default-props": "off",
-        "react/no-array-index-key": "off"
-    },
-    "env": {
-        "browser": true
+        "@typescript-eslint/no-dynamic-delete": "off"
     }
 }
