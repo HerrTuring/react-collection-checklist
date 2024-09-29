@@ -68,8 +68,7 @@
     },
     "peerDependencies": {
         "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react/jsx-runtime": "^18.2.0"
+        "react-dom": "^18.2.0"
     },
     "funding": "https://www.buymeacoffee.com/herrturing"
 }
