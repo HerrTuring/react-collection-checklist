@@ -117,7 +117,9 @@ const configEsm = {
         }
     },
     external: [
-        './node_modules/*'
+        './node_modules/*',
+        'react',
+        'react/jsx-runtime'
     ]
 };
 // #endregion
